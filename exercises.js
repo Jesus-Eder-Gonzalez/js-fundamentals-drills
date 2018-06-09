@@ -380,8 +380,8 @@ getKeys: function(obj) {
  * @param {Object}
  * @return {Array}
  */
-objectToArray: function() {
-
+objectToArray: function(obj) {
+  return Object.entries(obj);
 },
 
 /* #arrayToObject
@@ -392,8 +392,12 @@ objectToArray: function() {
  * @param {Array}
  * @return {Object}
  */
-arrayToObject: function() {
-
+arrayToObject: function(array) {
+  var obj;
+  for (i = 0; i < array.length; i++){
+    obj = Object.assign({[array[i]]: false}, obj);
+  }
+  return obj;
 },
 
 /* #arraysToObject
@@ -405,8 +409,12 @@ arrayToObject: function() {
  * @param {Array}
  * @return {Object}
  */
-arraysToObject: function() {
-
+arraysToObject: function(array1, array2) {
+  var obj;
+  for (i = 0; i < array1.length; i++){
+    obj = Object.assign({[array1[i]]: array2[i]}, obj);
+  }
+  return obj;
 },
 
 /* #objectsToTuples
@@ -417,8 +425,10 @@ arraysToObject: function() {
  * @param {Object}
  * @return {Array}
  */
-objectsToTuples: function() {
-
+objectsToTuples: function(obj1, obj2) {
+  var objArray = Object.entries(obj1);
+  objArray = objArray.concat(Object.entries(obj2));
+  return objArray;
 },
 
 /* #mapArrayValues
@@ -428,7 +438,12 @@ objectsToTuples: function() {
  * @param {Array}
  * @return {Object}
  */
-mapArrayValues: function() {
+mapArrayValues: function(array) {
+  var obj;
+  for (i = 0; i < array.length; i++){
+    obj = Object.assign({[array[i]]: true}, obj);
+  }
+  return obj;
 
 },
 
@@ -441,8 +456,20 @@ mapArrayValues: function() {
  * @param {Array}
  * @return {Object}
  */
-mapStringCounts: function() {
-
+mapStringCounts: function(array) {
+  function count5(str){
+    if(str.length >= 5){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+  var obj;
+  for (i = 0; i < array.length; i++){
+    obj = Object.assign({[array[i]]: count5(array[i])}, obj);
+  }
+  return obj;
 },
 
 /* #arrayToObjectNums
@@ -453,8 +480,12 @@ mapStringCounts: function() {
  * @param {Array}
  * @return {Object}
  */
-arrayToObjectNums: function() {
-
+arrayToObjectNums: function(array) {
+  var obj;
+  for (i = 0; i < array.length; i++){
+    obj = Object.assign({[array[i]]: true}, obj);
+  }
+  return obj;
 },
 
 /* #stringToKeys
@@ -464,8 +495,13 @@ arrayToObjectNums: function() {
  * @param {String}
  * @return {Object}
  */
-stringToKeys: function() {
+stringToKeys: function(str) {
 
+  var obj;
+  for (i = 0; i < str.length; i++){
+    obj = Object.assign({[str[i]]: true}, obj);
+  }
+  return obj;
 },
 
 /* #charCountMap
@@ -476,8 +512,12 @@ stringToKeys: function() {
  * @param {Array}
  * @return {Object}
  */
-charCountMap: function() {
-
+charCountMap: function(array) {
+  var obj;
+  for (i = 0; i < array.length; i++){
+    obj = Object.assign({[array[i]]: array[i].length}, obj);
+  }
+  return obj;
 },
 
 /* #frequencyMap
@@ -487,7 +527,12 @@ charCountMap: function() {
  * @param {String}
  * @return {Bool}
  */
-frequencyMap: function() {
+frequencyMap: function(array) {
+  var obj;
+  for (i = 0; i < array.length; i++){
+    obj = Object.assign({[array[i]]: array.filter(x => x === array[i]).length}, obj);
+  }
+  return obj;
 
 },
 
@@ -499,8 +544,13 @@ frequencyMap: function() {
  * @param {String}
  * @return {Bool}
  */
-tupleConvertToObject: function() {
-
+tupleConvertToObject: function(array) {
+  var obj;
+  console.log(array.length);
+  for (i = 0; i < array.length; i++){
+    obj = Object.assign({[array[i][0]]: array[i][1]}, obj);
+  }
+  return obj;
 }
 }
 
