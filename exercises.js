@@ -320,8 +320,8 @@ makeObjectReverse: function(value, key) {
  * @param {Array}
  * @return {Object}
  */
-tupleToObject: function() {
-
+tupleToObject: function(array) {
+  return {[array[0]]: array[1]};
 },
 
 /* #tupleToObjectReverse
@@ -331,8 +331,8 @@ tupleToObject: function() {
  * @param {Array}
  * @return {Object}
  */
-tupleToObjectReverse: function() {
-
+tupleToObjectReverse: function(array) {
+  return {[array[1]]: array[0]};
 },
 
 /* #strToKeys
@@ -342,8 +342,12 @@ tupleToObjectReverse: function() {
  * @param {Array}
  * @return {Object}
  */
-strToKeys: function() {
-
+strToKeys: function(array) {
+  var obj;
+  for (i = 0; i < array.length; i++){
+    obj = Object.assign({[array[i]]: 0}, obj);
+  }
+  return obj;
 },
 
 /* #getValues
@@ -353,8 +357,8 @@ strToKeys: function() {
  * @param {Object}
  * @return {Array}
  */
-getValues: function() {
-
+getValues: function(obj) {
+  return Object.values(obj);
 },
 
 /* #getKeys
@@ -364,8 +368,8 @@ getValues: function() {
  * @param {Object}
  * @return {Array}
  */
-getKeys: function() {
-
+getKeys: function(obj) {
+  return Object.keys(obj);
 },
 
 /* #objectToArray
